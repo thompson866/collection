@@ -10,25 +10,33 @@ import pro.sky.com.example.employeeworkdemo.sevice.EmployeeService;
 @RestController
 @RequestMapping("/employee")
 public class EmployeeController {
-    private EmployeeService employeeService;
+    private final EmployeeService employeeService;
 
     public EmployeeController(EmployeeService employeeService) {
         this.employeeService = employeeService;
     }
 
-    @GetMapping("add")
-    public Employee add(@RequestParam String firstName, @RequestParam String lastName) {
-        return employeeService.add(firstName, lastName);
+     @GetMapping("/person")
+     public String welcome() {
+         return "Привет";
+        }
+
+    @GetMapping("/add")
+    public Employee add(@RequestParam("firstName") String firstName,
+                        @RequestParam("lastName") String lastName) {
+        return employeeService.addEmployee(firstName, lastName);
     }
 
-    @GetMapping("remove")
-    public Employee remove(@RequestParam String firstName, @RequestParam String lastName) {
-        return employeeService.remove(firstName, lastName);
+    @GetMapping("/remove")
+    public Employee remove(@RequestParam("firstName") String firstName,
+                           @RequestParam("lastName") String lastName) {
+        return employeeService.removeEmployee(firstName, lastName);
     }
 
-    @GetMapping("find")
-    public Employee find(@RequestParam String firstName, @RequestParam String lastName) {
-        return employeeService.find(firstName, lastName);
+    @GetMapping("/find")
+    public Employee find(@RequestParam("firstName") String firstName,
+                         @RequestParam("lastName") String lastName) {
+        return employeeService.findEmployee(firstName, lastName);
     }
 }
 
