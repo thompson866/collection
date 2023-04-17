@@ -1,9 +1,6 @@
 package pro.sky.com.example.employeeworkdemo.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import pro.sky.com.example.employeeworkdemo.model.Employee;
 import pro.sky.com.example.employeeworkdemo.sevice.EmployeeService;
 
@@ -16,7 +13,7 @@ public class EmployeeController {
         this.employeeService = employeeService;
     }
 
-     @GetMapping("/person")
+     @GetMapping()
      public String welcome() {
          return "Привет";
         }
@@ -38,5 +35,6 @@ public class EmployeeController {
                          @RequestParam("lastName") String lastName) {
         return employeeService.findEmployee(firstName, lastName);
     }
+
 }
 

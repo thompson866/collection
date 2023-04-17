@@ -9,8 +9,8 @@ import pro.sky.com.example.employeeworkdemo.model.Employee;
 @Service
 public class EmployeeService {
 
-private static final int SIZE =4;
-private final Employee[] employee = new Employee[SIZE];
+    private static final int SIZE =4;
+    private final Employee[] employee = new Employee[SIZE];
 
     public Employee addEmployee(String firstName, String lastName) {
         int startEmp = -1;
@@ -52,5 +52,3 @@ private final Employee[] employee = new Employee[SIZE];
         throw new EmployeeNotFoundException();
     }
 }
-
-
