@@ -1,5 +1,8 @@
 package pro.sky.com.example.employeeworkdemo.model;
 
+
+import org.springframework.stereotype.Service;
+
 import java.util.Objects;
 
 public class Employee {
@@ -12,10 +15,10 @@ public class Employee {
         this.lastName = lastName;
     }
 
-
     public String getLastName() {
         return lastName;
     }
+
     public String getFirstName() {
         return firstName;
     }
@@ -36,6 +39,6 @@ public class Employee {
     @Override
     public String toString() {
 
-        return " имя " + firstName + "фамилия " + lastName ;
+        return " имя " + firstName + "фамилия " + lastName;
     }
 }
