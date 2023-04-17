@@ -7,57 +7,52 @@ import pro.sky.com.example.employeeworkdemo.exception.EmployeeNotFoundException;
 import pro.sky.com.example.employeeworkdemo.model.Employee;
 
 import javax.annotation.PostConstruct;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 
 @Service
 public class EmployeeService {
 
     private static final int SIZE = 4;
-    private final Employee[] employee = new Employee[SIZE];
+    private final List<Employee> employee = new ArrayList<>(SIZE);
 
-    @PostConstruct
-    public void init() {
-        employee[0] = new Employee("Вуди", "Вудпекер");
+    public List<Employee> list() {
+        return Collections.unmodifiableList(employee);
     }
 
+
     public Employee addEmployee(String firstName, String lastName) {
-        int startEmp = -1;
         Employee employeeNew = new Employee(firstName, lastName);
-        for (int i = 0; i < employee.length; i++) {
-            if (employee[i] == null && startEmp == -1) {
-                startEmp = i;
+        if (employee.size() < SIZE)
+            for (Employee q : employee) {
+                if (q.equals(employeeNew)) {
+                    throw new EmployeeAlreadyAddedException();
+                }
+                employee.add(employeeNew);
+                return employeeNew;
+
             }
-            if (employee[i] != null && employee[i].equals(employeeNew)) {
-                throw new EmployeeAlreadyAddedException();
-            }
-        }
-        if (startEmp == -1) {
-            throw new EmployeeStorageIsFullException();
-        }
-        employee[startEmp] = employeeNew;
-        return employee[startEmp];
+        throw new EmployeeStorageIsFullException();
     }
 
     public Employee removeEmployee(String firstName, String lastName) {
         Employee employeeNew = new Employee(firstName, lastName);
-        for (int i = 0; i < employee.length; i++) {
-            if (employeeNew.equals(employee[i])) {
-                employee[i] = null;
-
-                return employeeNew;
-            }
+        if (employee.remove(employeeNew)) {
+            return employeeNew;
         }
         throw new EmployeeNotFoundException();
     }
 
     public Employee findEmployee(String firstName, String lastName) {
         Employee employeeNew = new Employee(firstName, lastName);
-        for (Employee employee : employee) {
-            if (employee.equals(employeeNew)) {
-                return employeeNew;
-            }
+        if (employee.contains(employeeNew)) {
+            return employeeNew;
         }
         throw new EmployeeNotFoundException();
     }
 
-
 }
+
+

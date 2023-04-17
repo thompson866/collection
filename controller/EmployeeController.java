@@ -4,6 +4,8 @@ import org.springframework.web.bind.annotation.*;
 import pro.sky.com.example.employeeworkdemo.model.Employee;
 import pro.sky.com.example.employeeworkdemo.sevice.EmployeeService;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/employee")
 public class EmployeeController {
@@ -35,6 +37,10 @@ public class EmployeeController {
                          @RequestParam("lastName") String lastName) {
         return employeeService.findEmployee(firstName, lastName);
     }
+//    @GetMapping()
+//    public List<Employee>list(){
+//        return EmployeeService.list();//static?
+//    }
 
 }
 
