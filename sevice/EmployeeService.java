@@ -15,8 +15,14 @@ import java.util.List;
 @Service
 public class EmployeeService {
 
-    private static final int SIZE = 4;
+    private static final int SIZE = 3;
     private final List<Employee> employee = new ArrayList<>(SIZE);
+
+    @PostConstruct
+    public void init() {
+        employee.add(new Employee("вуди", "вудпекер"));
+        employee.add(new Employee("чилли", "вилли"));
+    }
 
     public List<Employee> list() {
         return Collections.unmodifiableList(employee);
@@ -25,15 +31,15 @@ public class EmployeeService {
 
     public Employee addEmployee(String firstName, String lastName) {
         Employee employeeNew = new Employee(firstName, lastName);
-        if (employee.size() < SIZE)
+        if (employee.size() < SIZE) {
             for (Employee q : employee) {
                 if (q.equals(employeeNew)) {
                     throw new EmployeeAlreadyAddedException();
                 }
-                employee.add(employeeNew);
-                return employeeNew;
-
             }
+            employee.add(employeeNew);
+            return employeeNew;
+        }
         throw new EmployeeStorageIsFullException();
     }
 
@@ -52,7 +58,8 @@ public class EmployeeService {
         }
         throw new EmployeeNotFoundException();
     }
-
 }
+
+
 
 

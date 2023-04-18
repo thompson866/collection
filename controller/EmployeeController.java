@@ -15,10 +15,10 @@ public class EmployeeController {
         this.employeeService = employeeService;
     }
 
-     @GetMapping()
-     public String welcome() {
-         return "Привет";
-        }
+    @GetMapping()
+    public String welcome() {
+        return "Привет";
+    }
 
     @GetMapping("/add")
     public Employee add(@RequestParam("firstName") String firstName,
@@ -37,9 +37,9 @@ public class EmployeeController {
                          @RequestParam("lastName") String lastName) {
         return employeeService.findEmployee(firstName, lastName);
     }
-    @GetMapping()
-    public List<Employee>list(){
-        return EmployeeService.list();//static?
+    @GetMapping("/all")
+    public List<Employee> list(){
+        return employeeService.list();
     }
 
 }
