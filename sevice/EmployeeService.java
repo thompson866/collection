@@ -18,11 +18,11 @@ public class EmployeeService {
     private static final int SIZE = 3;
     private final List<Employee> employee = new ArrayList<>(SIZE);
 
-    @PostConstruct
-    public void init() {
-        employee.add(new Employee("вуди", "вудпекер"));
-        employee.add(new Employee("чилли", "вилли"));
-    }
+//    @PostConstruct
+//    public void init() {
+//        employee.add(new Employee("вуди", "вудпекер"));
+//        employee.add(new Employee("чилли", "вилли"));
+//    }
 
     public List<Employee> list() {
         return Collections.unmodifiableList(employee);
