@@ -37,10 +37,10 @@ public class EmployeeController {
                          @RequestParam("lastName") String lastName) {
         return employeeService.findEmployee(firstName, lastName);
     }
-//    @GetMapping()
-//    public List<Employee>list(){
-//        return EmployeeService.list();//static?
-//    }
+    @GetMapping()
+    public List<Employee>list(){
+        return EmployeeService.list();//static?
+    }
 
 }
 
