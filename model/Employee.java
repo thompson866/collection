@@ -1,44 +1,74 @@
 package pro.sky.com.example.employeeworkdemo.model;
 
-
-import org.springframework.stereotype.Service;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.Objects;
 
 public class Employee {
-    private String firstName;
-    private String lastName;
 
+    @JsonProperty("firstName")
+    private final String name;
 
-    public Employee(String firstName, String lastName) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+    @JsonProperty("lastName")
+    private final String surname;
+
+    private int department;
+    private int salary;
+
+    public Employee(String name,
+                    String surname,
+                    int department,
+                    int salary) {
+        this.name = name;
+        this.surname = surname;
+        this.department = department;
+        this.salary = salary;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getName() {
+        return name;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getSurname() {
+        return surname;
+    }
+
+    public int getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(int department) {
+        this.department = department;
+    }
+
+    public int getSalary() {
+        return salary;
+    }
+
+    public void setSalary(int salary) {
+        this.salary = salary;
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Employee employee = (Employee) o;
-        return Objects.equals(firstName, employee.firstName) && Objects.equals(lastName, employee.lastName);
+        return Objects.equals(name, employee.name) && Objects.equals(surname, employee.surname);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(firstName, lastName);
+        return Objects.hash(name, surname);
     }
 
     @Override
     public String toString() {
-
-        return " имя " + firstName + "фамилия " + lastName;
+        return String.format("Имя " + surname + " " + name + " отдел:" + department + " зарплата: " + salary);
     }
+
 }
